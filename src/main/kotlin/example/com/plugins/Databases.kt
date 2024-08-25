@@ -17,8 +17,8 @@ fun Application.configureDatabases(): MongoDatabase {
         ignoreIfMissing = true
     }
 
-    val databaseName = environment.config.tryGetString("db.mongo.database.name") ?: "test"
-    val uri = dotenv["MONGODB_URI"] ?: throw IllegalStateException("MONGODB_URI not found in .env file")
+    val databaseName = environment.config.tryGetString("db.mongo.database.name") ?: "edms-ktor"
+    val uri = dotenv["MONGODB_URI"] ?: "mongodb://localhost:27017"
 
     val mongoClient = MongoClients.create(uri)
     val database = mongoClient.getDatabase(databaseName)
